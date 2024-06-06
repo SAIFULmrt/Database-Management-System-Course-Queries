@@ -1,0 +1,39 @@
+CREATE ROLE 'data_read';
+GRANT SELECT
+ON cse311l.*
+TO data_read;
+
+CREATING USER 'cse@localhost'
+IDENTIFIED BY 'root'
+
+GRANT data_read
+TO 'cse@localhost';
+
+SHOW GRANTS FOR 'cse@localhost'; //View Grants
+
+Such6+Egg+++
+
+
+===========Part B
+
+create table posts(
+id int,
+like int
+);
+
+create table likes(
+post_id int,
+user varchar
+);
+
+delimiter $$
+
+create trigger temp_trigger
+after insert on likes
+begin
+
+    update posts set likes = likes + 1;
+
+end$$
+
+delimiter;

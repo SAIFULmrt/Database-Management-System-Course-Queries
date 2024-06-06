@@ -1,0 +1,52 @@
+===================================================
+===============================LAB-Week 03 (Part A)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+SELECT Last_Name,Job_Id,Hire_Date
+FROM employees
+WHERE Hire_Date BETWEEN '1998-02-20' AND '1998-05-01'
+ORDER BY Hire_Date;
+
+
+---------------------------------------Activity 02:
+
+
+SELECT Last_Name, Department_Id
+FROM employees
+WHERE Department_Id=20 OR Department_Id=50
+order by Last_Name;
+
+
+===================================================
+===============================LAB-Week 03 (Part B)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+SELECT Last_Name, Hire_Date
+FROM employees
+WHERE Hire_Date like '1994%';
+
+
+---------------------------------------Activity 02:
+
+
+SELECT Last_Name, Salary, Commission_pct
+FROM employees
+WHERE Commission_pct is not null
+ORDER BY Salary DESC, Commission_pct desc;
+
+
+---------------------------------------Activity 03:
+
+
+SELECT Last_Name
+FROM employees
+WHERE Last_Name LIKE '%a%' AND Last_Name LIKE '%e%';
+ 

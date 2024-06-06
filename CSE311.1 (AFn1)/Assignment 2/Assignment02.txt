@@ -1,0 +1,120 @@
+-- 1
+
+SELECT EmployeeName
+FROM employee
+WHERE DepartmentID = 1;
+
+-- 2
+
+SELECT ItemName
+FROM item
+WHERE ItemID IN (SELECT ItemID
+		 FROM sale sl, department dt
+		 WHERE sl.DepartmentID = dt.DepartmentID AND DepartmentFloor = 2
+		 GROUP BY ItemID
+		 HAVING COUNT(DISTINCT dt.DepartmentID) > 1);
+
+-- 3
+
+SELECT dt.DepartmentID, dt.DepartmentName, ROUND(AVG(e.EmployeeSalary),2) AS 'Average_Salary'
+FROM department dt JOIN employee e
+ON dt.DepartmentID = e.DepartmentID
+GROUP BY dt.DepartmentID
+HAVING Average_Salary > 25000;
+
+-- 4
+
+SELECT e.EmployeeID, e.EmployeeName
+FROM employee e, employee m
+WHERE e.BossID = m.EmployeeID AND m.EmployeeSalary < e.EmployeeSalary;
+
+-- 5
+
+SELECT dt.DepartmentName, ROUND(AVG(e.EmployeeSalary),2) AS 'Average_Salary'
+FROM department dt JOIN employee e
+ON dt.DepartmentID = e.DepartmentID
+WHERE DepartmentName = 'Clothes';
+
+-- 6
+
+SELECT EmployeeName AS 'Manager', ROUND(EmployeeSalary,2) AS 'Salary'
+FROM employee
+WHERE EmployeeID IN (SELECT BossID
+		     FROM employee
+                     GROUP BY BossID
+                     HAVING COUNT(BossID) > 2);
+
+-- 7
+
+
+SELECT DISTINCT sr.SupplierID, sr.SupplierName
+FROM item i JOIN supplier sr JOIN delivery dy 
+ON i.ItemID = dy.ItemID AND dy.SupplierID = sr.SupplierID
+WHERE i.ItemName = 'Compass'
+ORDER BY SupplierID;
+					 
+-- 8
+
+SELECT EmployeeName, ROUND(EmployeeSalary,2) AS 'Salary'
+FROM employee
+WHERE EmployeeID IN (SELECT BossID
+		     FROM employee
+		     WHERE EmployeeName = 'Clare');
+					 
+					 
+-- 9
+
+SELECT EmployeeName
+FROM employee
+WHERE BossID IN (SELECT EmployeeID
+		 FROM employee
+                 WHERE EmployeeName = 'Todd');
+
+-- 10
+
+SELECT DepartmentName
+FROM department
+WHERE DepartmentID NOT IN (SELECT sl.DepartmentID
+			   FROM sale sl JOIN item i
+			   ON sl.ItemID = i.ItemID
+			   JOIN sale sl2
+			   ON sl.SaleID = sl2.SaleID
+			   JOIN Department dt
+			   ON sl2.DepartmentID = dt.DepartmentID
+			   WHERE i.ItemName = 'Geo positioning system');
+							
+-- 11
+
+SELECT i.ItemName, SUM(SaleQTY) AS 'Sale Quantity'
+FROM item i, sale sl, department dt
+WHERE i.ItemID = sl.ItemID AND dt.DepartmentID = sl.DepartmentID AND DepartmentFloor = 2
+GROUP BY ItemName;
+
+-- 12
+
+SELECT EmployeeID, EmployeeName
+FROM employee
+WHERE EmployeeSalary = (SELECT MIN(EmployeeSalary)
+                        FROM employee);
+						 
+-- 13
+
+SELECT dt.DepartmentName, ROUND(AVG(e.EmployeeSalary),2) AS 'Average Salary'
+FROM department dt join employee e
+ON dt.DepartmentID = e.DepartmentID
+WHERE DepartmentFloor= 2
+GROUP BY DepartmentName;
+
+-- 14
+
+SELECT EmployeeName
+FROM employee
+WHERE EmployeeID = (SELECT BossID
+                    FROM employee
+                    WHERE EmployeeName ='Sophie');
+				   
+-- 15
+
+SELECT b.EmployeeName
+FROM employee e, employee b
+WHERE e.BossID = b.EmployeeID AND e.DepartmentID = b.DepartmentID;

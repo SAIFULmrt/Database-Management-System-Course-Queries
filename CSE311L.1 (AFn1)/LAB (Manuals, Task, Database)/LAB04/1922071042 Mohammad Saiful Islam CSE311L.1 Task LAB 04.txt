@@ -1,0 +1,55 @@
+===================================================
+===============================LAB-Week 04 (Part A)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+select e.Last_Name, d.Department_Id, d.Department_Name
+from employees e left join departments d
+on e.Department_Id = d.Department_Id;
+
+
+---------------------------------------Activity 02:
+
+
+select e.Last_Name, d.Department_Name, d.Location_Id, l.City
+from employees e left join departments d
+on e.department_id = d.department_id
+join locations l
+on d.Location_Id = l.Location_Id
+where e.Commission_pct is not null;
+
+
+===================================================
+===============================LAB-Week 04 (Part B)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+select e.Last_Name, e.Job_Id, e.Department_Id, d.Department_Name
+from employees e join departments d
+on e.department_id = d.department_id
+join locations l
+on d.location_id = l.location_id
+where l.city = 'toronto';
+
+
+---------------------------------------Activity 02:
+
+
+select Last_Name, Salary, Commission_pct
+from employees
+where commission_pct is not null
+order by salary desc, commission_pct desc;
+
+
+---------------------------------------Activity 03:
+
+
+select e.Last_Name 'Employee', e.Employee_Id 'Emp#', m.Last_Name 'Manager', m.Employee_Id 'Mgr#'
+from employees e join employees m
+on e.Manager_Id = m.Employee_Id;

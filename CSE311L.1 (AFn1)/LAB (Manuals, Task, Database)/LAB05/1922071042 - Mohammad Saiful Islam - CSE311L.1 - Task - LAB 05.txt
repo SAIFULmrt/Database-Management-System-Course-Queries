@@ -1,0 +1,53 @@
+===================================================
+===============================LAB-Week 05 (Part A)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+SELECT ROUND(MAX(e.Salary),0) 'Maximum', ROUND(MIN(e.Salary),0) 'Minimum', ROUND(SUM(e.Salary),0) 'Sum', ROUND(AVG(e.Salary),0) 'Average'
+FROM employees e;
+
+
+---------------------------------------Activity 02:
+
+
+SELECT e.Job_Id, ROUND(MAX(e.Salary),0) 'Maximum', ROUND(MIN(e.Salary),0) 'Minimum', ROUND(SUM(e.Salary),0) 'Sum', ROUND(AVG(e.Salary),0) 'Average'
+FROM employees e
+GROUP BY e.Job_Id;
+
+
+===================================================
+===============================LAB-Week 05 (Part B)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+SELECT e.Job_Id, COUNT(e.Employee_Id)
+FROM employees e
+GROUP BY e.Job_Id;
+
+
+---------------------------------------Activity 02:
+
+
+SELECT e.Manager_id, MIN(e.Salary)
+FROM employees e
+WHERE e.Manager_id is not null
+GROUP BY e.Manager_id
+HAVING MIN(e.Salary) > 6000
+ORDER BY MIN(e.Salary) DESC;
+
+
+===================================================
+-----------------------------------------Home Work:
+===================================================
+
+
+SELECT d.Department_Name 'Name', l.City 'Location', COUNT(e.Employee_Id) 'Number of People', ROUND(avg(e.Salary),2) 'Salary'
+FROM employees e join departments d join locations l
+ON e.Department_Id = d.Department_id and d.Location_id = l.Location_id
+GROUP BY d.Department_Name;

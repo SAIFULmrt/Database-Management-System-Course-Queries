@@ -1,0 +1,50 @@
+===================================================
+===============================LAB-Week 06 (Part A)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+SELECT Last_Name, Hire_Date
+FROM employees
+WHERE Department_Id = (SELECT Department_Id
+	               FROM employees
+	               WHERE Last_Name = 'Zlotkey')
+AND Last_Name <> 'Zlotkey';
+
+
+---------------------------------------Activity 02:
+
+
+SELECT Employee_Id, Last_Name
+FROM employees
+WHERE Salary > (SELECT AVG(Salary)
+                FROM employees)
+ORDER BY Salary;
+
+
+===================================================
+===============================LAB-Week 06 (Part B)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+SELECT Last_Name, Salary
+FROM employees
+WHERE Manager_id IN (SELECT Employee_Id
+	            FROM employees
+	            WHERE Last_Name = 'King');
+
+
+---------------------------------------Activity 02:
+
+SELECT Employee_Id, Last_Name, Salary
+FROM employees
+WHERE Department_Id IN (SELECT Department_Id
+	                FROM employees
+	                WHERE Last_Name LIKE '%u%')
+	                AND Salary > (SELECT AVG(Salary)
+                        FROM employees);

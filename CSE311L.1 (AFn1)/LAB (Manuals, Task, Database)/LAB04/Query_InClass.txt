@@ -1,0 +1,66 @@
+use cse311l;
+
+// inner join or join
+
+select concat(employees.First_Name, ' ', employees.Last_Name) Name, departments.Department_Name
+from employees inner join departments
+on employees.Department_Id = departments.Department_Id; // condition (preferred)
+using (department_id); // condition alternative type
+
+
+
+// rename table name
+
+select concat(e.First_Name, ' ', e.Last_Name) Name, d.Department_Name
+from employees e inner join departments d // table rename for easier type
+on e.Department_Id = d.Department_Id;
+
+
+
+
+// full outer join
+
+select concat(e.First_Name, ' ', e.Last_Name) Name, d.Department_Name
+from employees e left join departments d // table rename for easier type
+on e.Department_Id = d.Department_Id;
+
+union
+
+select concat(e.First_Name, ' ', e.Last_Name) Name, d.Department_Name
+from employees e right join departments d // table rename for easier type
+on e.Department_Id = d.Department_Id;
+
+
+
+
+
+
+
+
+
+
+
+LAB04
+
+activity 01
+-----------
+
+
+
+activity 02
+-----------
+
+
+
+
+
+3)
+
+
+
+4)
+
+
+
+5)
+

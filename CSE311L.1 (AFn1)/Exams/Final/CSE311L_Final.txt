@@ -1,0 +1,52 @@
+-- 1
+
+alter table supplier
+add phone char(8);
+
+update supplier
+set phone ='55647788'
+where product_id='54';
+
+update supplier
+set phone ='45567854'
+where product_id='55';
+
+update supplier
+set phone ='57887478'
+where product_id='52';
+
+-- 2
+
+select company_name, quantity, avg(price)
+from supplier join supplier_details
+using (supplier_id)
+join product 
+using(product_id);
+
+-- 3
+
+select supplier_id 
+
+-- 4
+
+update supplier_details sd
+set sd.location ='chiba'
+join supplier sup 
+on sup.supplier_id =sd.supplier_id
+join product pro 
+on pro.product_id = sup.product_id 
+where pro.product_name like '%Titan%'
+
+
+-- 5
+
+create role 'data-write'
+grant insert, update, delete
+on final.product
+to data-write;
+
+create user 'finalcse@localhost'
+identified by 'root';
+
+grant data-WRITE
+to 'finalcse'@'localhost';

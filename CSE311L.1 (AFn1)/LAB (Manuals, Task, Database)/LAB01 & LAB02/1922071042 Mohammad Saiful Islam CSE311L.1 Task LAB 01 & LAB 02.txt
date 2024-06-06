@@ -1,0 +1,82 @@
+===================================================
+===============================LAB-Week 01 (Part A)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+create database lab01;
+
+use lab01;
+
+create table Employee (
+    EMPLOYEE_ID int(6) not null,
+    FIRST_NAME varchar(20),
+    LAST_NAME varchar(25) not null,
+    EMAIL varchar(25) not null,
+    PHONE_NUMBER varchar(20),
+    HIRE_DATE date not null,
+    JOB_ID varchar(10) not null,
+    SALARY decimal(8,2),
+    COMMISSION_PCT decimal(2,2),
+    MANAGER_ID int(6),
+    DEPARTMENT_ID int(4)
+    );
+
+
+===================================================
+===============================LAB-Week 01 (Part B)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+create table Department (
+    DEPARTMENT_ID int(4) not null,
+    DEPARTMENT_NAME varchar(30) not null,
+    MANAGER_ID int(6),
+    LOCATION_ID int(4)
+    )
+		
+
+---------------------------------------Activity 02:
+
+
+insert into Employee
+values(1, 'Sayem', 'Sajil', 'sayemsajil@gmail.com', '01855313067', '2021-10-28', '111111', 800000.00, .88, 1000, 7),
+      (2, 'Aziz', 'Jubayer', 'azizjubayer@gmail.com', '01608555344', '2021-10-29', '222222', 750000.00, .90, 2000, 8);
+	   
+	   
+---------------------------------------Activity 03:
+
+
+insert into Department
+values(01, 'ECE', 1111, 45),
+      (02, 'BBA', 3333, 98);
+
+
+===================================================
+===============================LAB-Week 02 (Part A)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+select LAST_NAME, (SALARY/4) "Weekly salary", DEPARTMENT_ID
+from Employee;
+
+
+===================================================
+===============================LAB-Week 02 (Part B)
+===================================================
+
+
+---------------------------------------Activity 01:
+
+
+
+select concat(LAST_NAME, ", ", JOB_ID) as 'Employee and Title'
+from Employee;
